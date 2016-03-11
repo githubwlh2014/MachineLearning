@@ -17,5 +17,31 @@ def classify0(inX, dataSet, labels, k):
         voteIlabel = labels[sortedDistIndicies[i]]                  
         classCount[voteIlabel] = classCount.get(voteIlabel,0) + 1   
     sortedClassCount = sorted(classCount.iteritems(), 
-key=operator.itemgetter(1), reverse=True)        
+    key=operator.itemgetter(1), reverse=True)        
     return sortedClassCount[0][0]
+
+def file2matrix(filename):
+    fr=open(filename)
+    arrayOLines=fr.readlines()
+    numberOfLines=len(arrayOLines)
+    returnMat=zeros((numberOfLines,3))
+    classLabelVector=[]
+    index=0
+    for line in arrayOLines:
+        line=line.strip()
+        listFromLine=line.split('\t')
+        returnMat[index,:]=listFromLine[0:3]
+        classLabelVector.append(int(listFromLine[-1]))
+        index+=1
+        print index
+    return returnMat,classLabelVector
+def autoNorm(dataSet):
+    minVals=dataSet.min(0)
+    maxVals=dataSet.max(0)
+    ranges=maxVals-minVals
+    normDataSet=zeros(shape(dataSet))
+    m=dataSet.shape[0]
+    normDataSet=dataSet-tile(minVals,(m,1))
+    normDataSet=normDataSet/tile(ranges,(m,1))
+    return normDataSet,ranges,minVals
+
