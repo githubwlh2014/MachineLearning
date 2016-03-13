@@ -65,7 +65,7 @@ def handwritingClassTest():
         fileStr = fileNameStr.split('.')[0]             
         classNumStr = int(fileStr.split('_')[0]) 
         hwLabels.append(classNumStr)
-        trainingMat[i,:] = img2vector('F:/MachineLearning/machinelearninginaction/Ch02/trainingDigits/%s' %fileNameStr)
+        trainingMat[i,:] = img2vector('F:/MachineLearning/machinelearninginaction/Ch02/trainingDigits/%s' % fileNameStr)
     testFileList = listdir('F:/MachineLearning/machinelearninginaction/Ch02/testDigits')
     errorCount = 0.0
     mTest = len(testFileList)
