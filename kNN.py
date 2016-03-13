@@ -65,7 +65,7 @@ def handwritingClassTest():
         fileStr = fileNameStr.split('.')[0]             
         classNumStr = int(fileStr.split('_')[0]) 
         hwLabels.append(classNumStr)
-        trainingMat[i,:] = img2vector('F:/MachineLearning/machinelearninginaction/Ch02/trainingDigits/%s' % fileNameStr)
+        trainingMat[i,:] = img2vector('F:/MachineLearning/machinelearninginaction/Ch02/trainingDigits/%s' %fileNameStr)
     testFileList = listdir('F:/MachineLearning/machinelearninginaction/Ch02/testDigits')
     errorCount = 0.0
     mTest = len(testFileList)
@@ -75,7 +75,7 @@ def handwritingClassTest():
         classNumStr = int(fileStr.split('_')[0])
         vectorUnderTest = img2vector('F:/MachineLearning/machinelearninginaction/Ch02/testDigits/%s' % fileNameStr)
         classifierResult = classify0(vectorUnderTest, \
-                                trainingMat, hwLabels, 3)
+								trainingMat, hwLabels, 3)
         print "the classifier came back with: %d, the real answer is: %d"\
                                 % (classifierResult, classNumStr)
         if (classifierResult != classNumStr): errorCount += 1.0
